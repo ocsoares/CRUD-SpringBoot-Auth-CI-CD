@@ -48,9 +48,16 @@ public class UserService {
 
         updateUserRequestDTO.getName().ifPresent(userFound::setName);
         updateUserRequestDTO.getPassword().ifPresent(pass -> userFound.setPassword(this.passwordEncoder.encode(pass)));
-        
+
         UserEntity userUpdated = this.userRepository.save(userFound);
 
         return this.userMapper.toResponse(userUpdated);
+    }
+
+    public void deleteUserByEmail(String email) {
+        UserEntity userFound = this.userRepository.findByEmail(email).orElseThrow(UserNotFoundException::new);
+
+        // NÃO usar "deleteById" porque busca novamente. Dessa forma deleto oq já encontrei !!
+        this.userRepository.delete(userFound);
     }
 }

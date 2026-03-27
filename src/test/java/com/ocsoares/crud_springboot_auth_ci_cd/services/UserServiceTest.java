@@ -244,4 +244,28 @@ class UserServiceTest {
         assertThat(result).isNotNull();
         verify(userRepository).save(user);
     }
+
+    // ======================== DELETE BY EMAIL ========================
+
+    @Test
+    @DisplayName("Should delete user successfully when user exists")
+    void shouldDeleteUserSuccessfully() {
+        when(userRepository.findByEmail(user.getEmail())).thenReturn(Optional.of(user));
+
+        userService.deleteUserByEmail(user.getEmail());
+
+        verify(userRepository).findByEmail(user.getEmail());
+        verify(userRepository).delete(user);
+    }
+
+    @Test
+    @DisplayName("Should throw UserNotFoundException when user to delete is not found")
+    void shouldThrowWhenUserToDeleteNotFound() {
+        when(userRepository.findByEmail(user.getEmail())).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> userService.deleteUserByEmail(user.getEmail())).isInstanceOf(
+                UserNotFoundException.class).hasMessage(UserNotFoundException.EXCEPTION_MESSAGE);
+
+        verify(userRepository, never()).delete(any());
+    }
 }

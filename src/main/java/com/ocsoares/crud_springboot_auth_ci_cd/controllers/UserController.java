@@ -37,4 +37,10 @@ public class UserController {
     ) {
         return ResponseEntity.ok(this.userService.updateUserByEmail(email, updateUserRequestDTO));
     }
+
+    @DeleteMapping("/search")
+    public ResponseEntity<Void> deleteUserByEmail(@RequestParam @NotBlank @Email String email) {
+        this.userService.deleteUserByEmail(email);
+        return ResponseEntity.noContent().build();
+    }
 }
