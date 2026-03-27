@@ -1,6 +1,6 @@
 package com.ocsoares.crud_springboot_auth_ci_cd.services;
 
-import com.ocsoares.crud_springboot_auth_ci_cd.dtos.UserResponseDTO;
+import com.ocsoares.crud_springboot_auth_ci_cd.dtos.response.UserResponseDTO;
 import com.ocsoares.crud_springboot_auth_ci_cd.entities.UserEntity;
 import com.ocsoares.crud_springboot_auth_ci_cd.exceptions.user.UserNotFoundException;
 import com.ocsoares.crud_springboot_auth_ci_cd.mapper.UserMapper;
