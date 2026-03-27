@@ -8,6 +8,8 @@ import com.ocsoares.crud_springboot_auth_ci_cd.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -19,5 +21,11 @@ public class UserService {
         UserEntity userFound = this.userRepository.findByEmail(email).orElseThrow(UserNotFoundException::new);
 
         return this.userMapper.toResponse(userFound);
+    }
+
+    public List<UserResponseDTO> findAllUsers() {
+        List<UserEntity> usersFound = this.userRepository.findAll();
+
+        return this.userMapper.toResponseList(usersFound);
     }
 }

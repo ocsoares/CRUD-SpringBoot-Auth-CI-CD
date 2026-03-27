@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
@@ -19,9 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private final UserService userService;
 
-    @GetMapping()
+    @GetMapping("/search")
     public ResponseEntity<UserResponseDTO> findUserByEmail(@RequestParam @NotBlank @Email String email) {
-        System.out.println("TESTANDO apenas....");
         return ResponseEntity.ok(this.userService.findUserByEmail(email));
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<UserResponseDTO>> getAllUsers() {
+        return ResponseEntity.ok(this.userService.findAllUsers());
     }
 }
