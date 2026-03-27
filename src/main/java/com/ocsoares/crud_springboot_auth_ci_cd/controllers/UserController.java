@@ -21,6 +21,7 @@ public class UserController {
 
     @GetMapping()
     public ResponseEntity<UserResponseDTO> findUserByEmail(@RequestParam @NotBlank @Email String email) {
+        System.out.println("TESTANDO apenas....");
         return ResponseEntity.ok(this.userService.findUserByEmail(email));
     }
 }
