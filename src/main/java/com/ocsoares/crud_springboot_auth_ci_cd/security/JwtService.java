@@ -21,9 +21,6 @@ public class JwtService {
     private Long jwtExpiration;
 
     private SecretKey getSigningKey() {
-        System.out.println("JWT SECRET-----------: " + this.jwtSecret);
-        System.out.println("JWT EXPIRATION-------: " + this.jwtExpiration);
-        
         return Keys.hmacShaKeyFor(this.jwtSecret.getBytes(StandardCharsets.UTF_8));
     }
 
