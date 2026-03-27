@@ -1,6 +1,6 @@
 package com.ocsoares.crud_springboot_auth_ci_cd.controllers;
 
-import com.ocsoares.crud_springboot_auth_ci_cd.dtos.UserResponseDTO;
+import com.ocsoares.crud_springboot_auth_ci_cd.dtos.response.UserResponseDTO;
 import com.ocsoares.crud_springboot_auth_ci_cd.services.UserService;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
