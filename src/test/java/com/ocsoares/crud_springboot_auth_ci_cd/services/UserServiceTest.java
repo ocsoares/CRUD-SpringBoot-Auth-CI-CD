@@ -250,7 +250,6 @@ class UserServiceTest {
     @Test
     @DisplayName("Should delete user successfully when user exists")
     void shouldDeleteUserSuccessfully() {
-        when(userRepository.findByEmail(user.getEmail())).thenReturn(Optional.of(user));
 
         userService.deleteUserByEmail(user.getEmail());
 
